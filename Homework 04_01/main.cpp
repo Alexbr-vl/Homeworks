@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <windows.h>
 
 class Address
 {
@@ -28,10 +27,6 @@ void clear_memory(Address** address_array, int number_of_addresses) {
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-
 	std::ifstream in_file;
 	in_file.open("in.txt");
 	
