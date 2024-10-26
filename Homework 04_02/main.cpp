@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include<string>
+#include <string>
+#include <sstream>
 
 class Address
 {
@@ -9,29 +10,36 @@ private:
 	std::string street;
 	int house_number;
 	int flat_number;
-
 public:
-	Address (std::string city_, std::string street_, int house_number_, int flat_number_)
-	:city(city_), street(street_), house_number(house_number_), flat_number(flat_number_){}
+	Address(std::string city_, std::string street_, int house_number_, int flat_number_)
+		:city(city_), street(street_), house_number(house_number_), flat_number(flat_number_) {}
 
-	std::string get_output_address () { return city + ", " + street + ", " + std::to_string(house_number) + ", " + std::to_string(flat_number); }
-	std::string get_city() const { return city; }
+	std::string get_output_address() const {
+		return city + ", " + street + ", " + std::to_string(house_number) + ", " + std::to_string(flat_number);
+	}
+	std::string get_city() const {
+		return city;
+	}
 };
-
 void clear_memory(Address** address_array, int number_of_addresses) {
 	for (int i = 0; i < number_of_addresses; ++i) {
 		delete address_array[i];
 	}
 	delete[] address_array;
 }
-void sort_addresses(Address** addresses, int size) {
+bool is_number(const std::string& str) {
+	std::istringstream iss(str);
+	int num;
+	return (iss >> num) && (iss.eof());
+}
+void sort_addresses(Address** address_array, int size) {
 	for (int i = 0; i < size - 1; ++i) {
 		for (int j = 0; j < size - i - 1; ++j) {
-			if (addresses[j]->get_city() > addresses[j + 1]->get_city()) {
+			if (address_array[j]->get_city() > address_array[j + 1]->get_city()) {
 				// Меняем местами указатели на адреса
-				Address* temp = addresses[j];
-				addresses[j] = addresses[j + 1];
-				addresses[j + 1] = temp;
+				Address* temp = address_array[j];
+				address_array[j] = address_array[j + 1];
+				address_array[j + 1] = temp;
 			}
 		}
 	}
@@ -40,48 +48,73 @@ void sort_addresses(Address** addresses, int size) {
 
 int main()
 {
-	int number_of_addresses = 0;
 	std::ifstream in_file;
 	in_file.open("in.txt");
 
+	int number_of_addresses = 0;
+
 	if (in_file.is_open())
 	{
-		in_file >> number_of_addresses;
+		in_file >> number_of_addresses; // количество адресов из файла
+		int actual_number_of_addresses = 0; // счётчик реального количества адресов
 
-		Address** address_array = new Address * [number_of_addresses]; //авансируем память
+		Address** address_array = new Address * [number_of_addresses];   //авансировали память на двумерный массив
+
 
 		for (int i = 0; i < number_of_addresses; i++)  //заполняем массив
 		{
-			std::string city_, street_;
+			std::string city_, street_, house_number_string, flat_number_string;
 			int house_number_, flat_number_;
 
-			in_file >> city_ >> street_ >> house_number_ >> flat_number_; //сохраняем данные из файла в переменные
-			
-			// Создаём новый объект Address и сохраняем его указатель в массиве
-			address_array[i] = new Address(city_, street_, house_number_, flat_number_);
+			if (!(in_file >> city_ >> street_ >> house_number_string >> flat_number_string))// проверяем соответствует количество итераций количеству информации в файле, если не соответствует прерываем
+			{
+				std::cout << "There is not enough data in the file" << std::endl;
+				break;
+			}
+			if (!is_number(house_number_string) || !is_number(flat_number_string)) // проверяем соответствует ли формат ввода номера дома и номера квартиры, если не соответствует прерываем
+			{
+				std::cout << "ERROR!!! Invalid format \"Number of house\" or \"number of flat\"" << std::endl;
+				break;
+			}
+
+			// Преобразуем строки в числа
+			house_number_ = std::stoi(house_number_string);
+			flat_number_ = std::stoi(flat_number_string);
+
+			address_array[actual_number_of_addresses] = new Address(city_, street_, house_number_, flat_number_);
+			++actual_number_of_addresses;
 		}
 		in_file.close(); //закрываем файл
 		
-		sort_addresses(address_array, number_of_addresses); //делаем пузырьковую сортировку
+		sort_addresses(address_array, actual_number_of_addresses); //делаем пузырьковую сортировку
+
+		if (actual_number_of_addresses < number_of_addresses)
+		{
+			std::cout << "ERROR! There are less real addresses than specified in the file or format \"Number of house\" or \"number of flat\" is incorrect. Check the file \"in.txt\"." << std::endl;
+			// clear_memory(address_array, actual_number_of_addresses);   если почистить память тут, то выдает исключение "ошибка доступа", получается что ссылается на уже удаленный объект
+		}
 
 		std::ofstream out_file;
 		out_file.open("out.txt");
 
-		if (out_file.is_open()) //если файл открыли, сохраняем в него данные из массива
+		if (out_file.is_open())
 		{
-			out_file << number_of_addresses << std::endl;
+			out_file << actual_number_of_addresses << std::endl;
 
-			for (int i = 0; i < number_of_addresses; i++) {
+			for (int i = 0; i < actual_number_of_addresses;i++) {
 				out_file << address_array[i]->get_output_address() << std::endl;
 			}
 			out_file.close(); //закрываем файл
-			clear_memory(address_array, number_of_addresses);//чистим память
+			clear_memory(address_array, actual_number_of_addresses);
 		}
 		else
 		{
 			std::cout << "File is not opened" << std::endl;
-			clear_memory(address_array, number_of_addresses); //чистим память даже если файл на запись открыть не удалось
+			clear_memory(address_array, actual_number_of_addresses);
 		}
 	}
-	else { std::cout << "File is not opened" << std::endl; }
+	else
+	{
+		std::cout << "File is not opened" << std::endl;
+	}
 }
