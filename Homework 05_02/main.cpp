@@ -12,7 +12,7 @@ public:
 
 class Triangle:public Figure
 {
-protected:
+private:
 	int sideA, sideB, sideC;
 	int angleA, angleB, angleC;
 	std::string name;
@@ -61,7 +61,7 @@ public:
 
 class Quadrangle:public Figure
 {
-protected:
+private:
 	int sideA, sideB, sideC, sideD;
 	int angleA, angleB, angleC, angleD;
 	std::string name;
