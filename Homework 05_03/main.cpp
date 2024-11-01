@@ -138,9 +138,6 @@ public:
 		return Rectangle::is_correct() && (sideA == sideB == sideC == sideD);
 	}
 };
-void print_info(Figure* figure) {
-	figure->print_info();
-}
 
 
 int main() 
@@ -156,14 +153,14 @@ int main()
 	Rhomb rhomb("Rhomb", 30, 30, 40);
 	Square square("Square", 20);
 
-	print_info(&figure);
-	print_info(&triangle);
-	print_info(&right_triangle);
-	print_info(&isosceles_triangle);
-	print_info(&equilateral_triangle);
-	print_info(&quadrangle);
-	print_info(&parallelogram);
-	print_info(&rectangle);
-	print_info(&rhomb);
-	print_info(&square);
+	figure.print_info();
+	triangle.print_info();
+	right_triangle.print_info();
+	isosceles_triangle.print_info();
+	equilateral_triangle.print_info();
+	quadrangle.print_info();
+	parallelogram.print_info();
+	rectangle.print_info();
+	rhomb.print_info();
+	square.print_info();
 }
