@@ -1,4 +1,4 @@
-#include"figure.h"
+п»ї#include"figure.h"
 #include"triangle.h"
 #include"right_triangle.h"
 #include"isosceles_triangle.h"
@@ -12,7 +12,7 @@ int main()
 
 	try
 	{
-		Triangle triangle("Треугольник", 10, 20, 30, 60, 70, 60);
+		Triangle triangle("РўСЂРµСѓРіРѕР»СЊРЅРёРє", 10, 20, 30, 60, 70, 60);
 		triangle.print_info();
 	}
 	catch (const Incorrect_figure_data& e)
@@ -21,7 +21,7 @@ int main()
 	}
 	try
 	{
-		Right_triangle right_triangle("Прямоугольный треугольник", 10, 20, 30, 30, 60);
+		Right_triangle right_triangle("РџСЂСЏРјРѕСѓРіРѕР»СЊРЅС‹Р№ С‚СЂРµСѓРіРѕР»СЊРЅРёРє", 10, 20, 30, 30, 60);
 		right_triangle.print_info();
 	}
 	catch (const Incorrect_figure_data& e)
@@ -30,7 +30,7 @@ int main()
 	}
 	try
 	{
-		Isosceles_triangle isosceles_triangle("Равнобедренный треугольник", 23,44,13,60,60);
+		Isosceles_triangle isosceles_triangle("Р Р°РІРЅРѕР±РµРґСЂРµРЅРЅС‹Р№ С‚СЂРµСѓРіРѕР»СЊРЅРёРє", 23,44,13,60,60);
 		isosceles_triangle.print_info();
 	}
 	catch (const Incorrect_figure_data& e)
