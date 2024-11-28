@@ -1,0 +1,2 @@
+add_executable(Greeter_client main.cpp)
+target_link_libraries(Greeter_client PUBLIC GreeterLib)
