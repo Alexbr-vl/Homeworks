@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.22.0)
+п»їcmake_minimum_required(VERSION 3.22.0)
 project(Homework_06_03 CXX)
 
-# Источники
+# РСЃС‚РѕС‡РЅРёРєРё
 set(SOURCES
     main.cpp
     equilateral_triangle.cpp
@@ -17,7 +17,7 @@ set(SOURCES
     triangle.cpp
 )
 
-# Заголовочные
+# Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Рµ
 set(HEADERS
     equilateral_triangle.h
     error_creating_figure.h
