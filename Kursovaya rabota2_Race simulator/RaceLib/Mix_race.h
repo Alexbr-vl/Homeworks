@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Race.h"
 
 class Mix_race :public Race

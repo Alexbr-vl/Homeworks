@@ -1,4 +1,4 @@
-add_library(TransportLib SHARED 
+﻿add_library(TransportLib SHARED 
 	${CMAKE_CURRENT_SOURCE_DIR}/Transport.cpp
 
 	${CMAKE_CURRENT_SOURCE_DIR}/Ground_transport.cpp

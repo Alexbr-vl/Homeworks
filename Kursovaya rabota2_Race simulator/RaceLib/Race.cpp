@@ -1,4 +1,5 @@
 ﻿#include "Race.h"
+#include <iomanip>
 
 // Конструктор
 Race::Race(double distance)
@@ -13,15 +14,40 @@ Race::Race(double distance)
 // Добавление участника
 void Race::add_participant(Transport* transport) 
 {
+    // Проверяем на переполнение
     if (participant_count_ >= max_participants) 
     {
-        std::cout << "Ошибка: нельзя добавить больше участников!\n";
+        std::cout << "Статус регистрации: ---===Ошибка: достигнуто максимальное количество участников!===---\n";
+        delete transport;
         return;
     }
+
+    // Проверяем на дублирование
+    for (int i = 0; i < participant_count_; ++i) 
+    {
+        if (participants_[i]->get_name() == transport->get_name()) 
+        {
+            std::cout << "Статус регистрации: ---===Ошибка: " << transport->get_name() << " уже зарегистрирован!!!===---\n";
+            delete transport;
+            return;
+        }
+    }
+
+    // Добавляем участника
     participants_[participant_count_++] = transport;
+    std::cout << "Статус регистрации: " << transport->get_name() << " успешно зарегистрирован.\n";
 }
 
 int Race::get_participant_count() const { return participant_count_; }
+
+Transport* Race::get_participant(int index) const 
+{
+    if (index < 0 || index >= participant_count_) 
+    {
+        return nullptr; // Возвращаем nullptr, если индекс некорректный
+    }
+    return participants_[index];
+}
 
 // Проведение гонки (сортировка пузырьком)
 void Race::run_race() 
@@ -45,10 +71,15 @@ void Race::run_race()
 void Race::print_results() const 
 {
     std::cout << "\nРезультаты гонки:\n";
+    std::cout << std::left << std::setw(20) << "Участник"
+        << std::setw(15) << "Время (ч)" << "\n";
+    std::cout << std::string(35, '-') << "\n";
+
     for (int i = 0; i < participant_count_; ++i) 
     {
-        std::cout << participants_[i]->get_name()
-            << ": " << participants_[i]->time_of_distance(distance_) << " часов\n";
+        std::cout << std::left << std::setw(20) << participants_[i]->get_name()
+            << std::setw(15) << participants_[i]->time_of_distance(distance_)
+            << "\n";
     }
 }
 

@@ -1,6 +1,7 @@
-#include "Mix_race.h"
+п»ї#include "Mix_race.h"
 
-void Mix_race::add_participant(Transport* transport) {
-    // В смешанной гонке разрешены все ТС
+void Mix_race::add_participant(Transport* transport) 
+{
+    // Р’ СЃРјРµС€Р°РЅРЅРѕР№ РіРѕРЅРєРµ СЂР°Р·СЂРµС€РµРЅС‹ РІСЃРµ РўРЎ
     Race::add_participant(transport);
 }

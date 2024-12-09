@@ -1,4 +1,4 @@
-add_library(RaceLib SHARED 
+﻿add_library(RaceLib SHARED 
 	${CMAKE_CURRENT_SOURCE_DIR}/Race.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/Ground_race.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/Air_race.cpp

@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿//подключаем все необходимые классы и библиотеки
+#include <iostream>
 #include "Transport.h"
 #include "Ground_transport.h"
 #include "Camel.h"
@@ -19,6 +20,6 @@ int main()
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
     
-    Interface iface;
-    iface.run();
+    Interface iface; //создаем объект класса Interface
+    iface.run(); //запускаем метод run, класса Interface
 }

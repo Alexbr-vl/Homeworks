@@ -1,14 +1,14 @@
-#include "Ground_race.h"
+ï»¿#include "Ground_race.h"
 
 void Ground_race::add_participant(Transport* transport) 
 {
-    // Ïğîâåğÿåì, ÿâëÿåòñÿ ëè ÒÑ íàçåìíûì
+    // ĞŸÑ€Ğ¾Ğ²ĞµÑ€ÑĞµĞ¼, ÑĞ²Ğ»ÑĞµÑ‚ÑÑ Ğ»Ğ¸ Ğ¢Ğ¡ Ğ½Ğ°Ğ·ĞµĞ¼Ğ½Ñ‹Ğ¼
     if (transport->is_ground_transport()) 
     {
         Race::add_participant(transport);
     }
     else 
     {
-        std::cout << "Îøèáêà: ìîæíî ğåãèñòğèğîâàòü òîëüêî íàçåìíûå òğàíñïîğòíûå ñğåäñòâà!\n";
+        std::cout << "---===ĞÑˆĞ¸Ğ±ĞºĞ°: Ğ¼Ğ¾Ğ¶Ğ½Ğ¾ Ñ€ĞµĞ³Ğ¸ÑÑ‚Ñ€Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒ Ñ‚Ğ¾Ğ»ÑŒĞºĞ¾ Ğ½Ğ°Ğ·ĞµĞ¼Ğ½Ñ‹Ğµ Ñ‚Ñ€Ğ°Ğ½ÑĞ¿Ğ¾Ñ€Ñ‚Ğ½Ñ‹Ğµ ÑÑ€ĞµĞ´ÑÑ‚Ğ²Ğ°!===---\n";
     }
 }

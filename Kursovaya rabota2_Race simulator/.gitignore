@@ -1,4 +1,4 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,c++,cmake
+﻿# Created by https://www.toptal.com/developers/gitignore/api/windows,c++,cmake
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,c++,cmake
 
 ### C++ ###
@@ -47,6 +47,9 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+.vs/
+out/
+
 
 ### CMake Patch ###
 # External projects

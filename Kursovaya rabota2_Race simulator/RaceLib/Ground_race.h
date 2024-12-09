@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Race.h"
 
 class Ground_race : public Race

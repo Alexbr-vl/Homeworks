@@ -5,6 +5,7 @@ Magic_carpet::Magic_carpet() :Air_transport("Ковёр-самолёт", 10, 0){
 double Magic_carpet::time_of_distance(double distance) const
 {
 	if (distance < 1000) { return (distance / speed_); }
+	
 	if (distance < 5000) 
 	{
 		double distance_reduction_factor = 0.03;
