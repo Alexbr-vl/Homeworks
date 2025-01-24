@@ -5,7 +5,7 @@ project(TestProject)
 set(CMAKE_CXX_STANDARD 17)
 
 # Основной файл с реализацией списка и тестов
-add_executable(ListTests Tests.cpp main.cpp)
+add_executable(ListTests Tests.cpp "my_list.cpp" "my_list.h")
 
 # Подключение Catch2
 add_subdirectory(catch2)
