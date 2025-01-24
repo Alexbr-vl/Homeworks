@@ -1,5 +1,5 @@
 ﻿#include <catch2/catch_test_macros.hpp>
-#include "main.cpp"
+#include "my_list.h"
 
 TEST_CASE("List functionality", "[List]")
 {
