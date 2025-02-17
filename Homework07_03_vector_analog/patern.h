@@ -38,6 +38,32 @@ public:
         delete[] data;
     }
 
+    // Конструктор копирования
+    MyVector(const MyVector& other)
+        : data(new T[other.vec_capacity]), vec_size(other.vec_size), vec_capacity(other.vec_capacity) 
+    {
+        std::copy(other.data, other.data + vec_size, data); // Копируем элементы
+    }
+
+    // Оператор присваивания
+    MyVector& operator=(const MyVector& other) 
+    {
+        if (this != &other) 
+        { // Проверка на самоприсваивание
+            // Освобождаем старую память
+            delete[] data;
+
+            // Копируем размер и вместимость
+            vec_size = other.vec_size;
+            vec_capacity = other.vec_capacity;
+
+            // Выделяем новую память и копируем элементы
+            data = new T[vec_capacity];
+            std::copy(other.data, other.data + vec_size, data);
+        }
+        return *this;
+    }
+
     // Доступ к элементу по индексу
     T& at(size_t index) 
     {

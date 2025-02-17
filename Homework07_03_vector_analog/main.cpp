@@ -34,4 +34,33 @@ int main()
         std::cout << vec.at(i) << " ";
     }
     std::cout << std::endl;
+
+    std::cout << "\nUsing the copy constructor and assignment operator: \n";
+    // Использование конструктора копирования
+    MyVector<int> vec2 = vec;
+
+    // Использование оператора присваивания
+    MyVector<int> vec3;
+    vec3 = vec;
+
+    std::cout << "vec1: ";
+    for (size_t i = 0; i < vec.size(); ++i) 
+    {
+        std::cout << vec.at(i) << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "vec2: ";
+    for (size_t i = 0; i < vec2.size(); ++i) 
+    {
+        std::cout << vec2.at(i) << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "vec3: ";
+    for (size_t i = 0; i < vec3.size(); ++i) 
+    {
+        std::cout << vec3.at(i) << " ";
+    }
+    std::cout << std::endl;
 }
